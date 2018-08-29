@@ -25,6 +25,7 @@ function lookup(net,ip){
 				console.log(ip)
 				console.log(err)
 			}
+
 			try{
 				org = data.split("Organization:")[1].split("\n")[0].trim()
 				whoDis[net]=org
@@ -35,8 +36,15 @@ function lookup(net,ip){
 					whoDis[net]=org
 					resolve(org)
 				}catch(error){
-					whoDis[net]=ip		
-					resolve(ip)
+					try{
+						org = data.split("descr:")[1].split("\n")[0].trim()
+						whoDis[net]=org
+						resolve(org)
+					}catch(err){
+						whoDis[net]=ip		
+						resolve(ip)
+					}
+				
 				}
 
 			}
