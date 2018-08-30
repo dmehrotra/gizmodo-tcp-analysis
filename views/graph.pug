@@ -3,6 +3,10 @@ html
   script(src='http://d3js.org/d3.v3.min.js')
   script(src='https://code.jquery.com/jquery-3.3.1.min.js')
   body 
+   <select id="box1" onChange="buildMap(this.value);">
+    <option value="hours" >hours</option>
+    <option value="minutes" >minutes</option>
+   </select>
    p= data
    div#vis-container
    script(src='js/graph.js')

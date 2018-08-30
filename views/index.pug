@@ -1,7 +1,26 @@
 html
  head
   body 
+   h3 Saved Files
    ul
-    for item in data
+    for item in csv
      li 
       a(href="/"+item) #{item}
+   <br>
+   <br>
+   h3 In Progress
+   ul
+    for item in tcp
+     li #{item}
+   <br>
+   <br> 
+   <hr>
+   h3 Start New Experiment
+   <form action="/experiment/" class="pure-form" method="post">
+    <label style="display: block; margin:10px 0px">file name:</label>
+    <input id="file_name" type="text" name="file_name" style="padding:10px" value="name of experiment."><br>
+    <label style="display: block; margin:10px 0px;">seconds:</label>
+    <input type="text" placeholder="time to run (seconds)" name="seconds" style="padding:10px" required><br>
+    <button style="display: block; margin:10px 0px;" type='submit'>Start</button>
+   </form>
+   <hr>
