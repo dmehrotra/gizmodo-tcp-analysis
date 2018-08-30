@@ -77,8 +77,12 @@ app.get('/:file_name', function (req, res) {
 app.post('/experiment', function (req, res) {
 	shell.exec('./scripts/util/tcpdump.sh en0 '+req.body.seconds+' '+req.body.file_name)
 
-	getFiles().then(function(data){
-		res.render('index', { data: data })
+	getFiles("csv").then(function(csv_data){
+		csv = csv_data
+		getFiles("tcp").then(function(tcp_d){
+			tcp = tcp_d
+			res.render('index', { csv: csv, tcp: tcp })
+		})
 	})
 	
   
