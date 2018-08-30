@@ -81,7 +81,7 @@ app.post('/experiment', function (req, res) {
 		csv = csv_data
 		getFiles("tcp").then(function(tcp_d){
 			tcp = tcp_d
-			res.render('index', { csv: csv, tcp: tcp })
+			res.redirect('/')
 		})
 	})
 	

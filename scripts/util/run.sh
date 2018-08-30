@@ -2,12 +2,12 @@
 for pid in $(pidof tcpdump); do
     if [ $pid != $$ ]; then
         echo "[$(date)] : tcpdump.sh : An experiment is taking place: $pid"
-    	./parse-tcp-stream.sh
-    	./parse-details.sh
-    else
-    	./pcap2txt.sh
-    	./parse-tcp-stream.sh
-    	./parse-details.sh
+        exit 1;
     fi
-
 done
+echo "running conversion"
+./pcap2txt.sh
+echo "running tcp-parse"
+./parse-tcp-stream.sh
+echo "running whois"
+./parse-details.sh
